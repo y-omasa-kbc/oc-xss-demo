@@ -1,0 +1,58 @@
+<div
+class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+<h1 class="h4">説明3</h1>
+</div>
+<p>
+① 「訓練2」をやってみて、どう思いましたか？似たような入力場所が2つあって、片方の対策だけやってもう一方を忘れるなんてあり得ない、と思いますか？
+確かに、これほどわかりやすい「対策抜け」はそれほど発生しないかもしれません。では、攻撃が可能だということを気づかなかった場合はどうでしょう。
+</p>
+<p>
+② 「訓練3」では、ユーザーが入力できる2箇所はどちらも対策されています。もう一つ入力がありますが、これは3つの選択肢から一つを選ぶもので、入力は不可能に思えます。<br>
+こんな感じ。
+<fieldset class="form-group">
+    <div class="row">
+      <legend class="col-form-label col-1">評価</legend>
+      <div class="col-11">
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="evaluate" id="radios1" value="★★★" checked>
+          <label class="form-check-label" for="radios1">
+             ★★★
+          </label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="evaluate" id="radios2" value="★★☆">
+          <label class="form-check-label" for="radios2">
+            ★★☆
+          </label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="evaluate" id="radios3" value="★☆☆">
+          <label class="form-check-label" for="radios3">
+            ★☆☆
+          </label>
+        </div>
+      </div>
+    </div>
+  </fieldset>                    
+こういう、「問題なさそう」に見えるところは特に危険です。
+</p>
+<p>
+③ ホワイトハッカーには、普通の技術者以上の技術的知識が求められます。これが、攻撃可能であることを見抜けないといけません。<br>
+入力場所のソースコードを見ると、こんな風になっています。<br>
+<br>
+&lt;input type="radio" name="evaluate" ...省略... value="★★★"&gt;<br>
+&lt;label ...省略...&gt;★★★&lt;/label&gt;<br>
+<br>
+HTMLのタグには属性という追加情報が指定されています。<br>
+<br>
+&lt;タグ名 属性名=属性値, 属性名=属性値&gt;<br>
+&lt;input ...&gt;タグは、サーバーに送る情報を入力するボックスを表示することも、属性を使って送るデータを指定することもできます。<br>
+<br>
+ここでは value="★★★" の ★★★ が文字列として送信されます。<br>
+</p>
+<p>
+④ どのブラウザにも、Webページを作成する人を助けるための「ディベロッパーツール」(「開発者ツール」ともいう)が用意されています。
+これを使えば、一時的に属性値の部分を無理やり変更することができてしまいます。
+これはブラックハッカーのテクニックです。それを知らないと、十分なペネトレーションテストができません。<br>
+では「訓練3」で実際にやってみましょう。
+</p>

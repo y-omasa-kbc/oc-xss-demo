@@ -1,0 +1,16 @@
+怪しいとされているのは色を指定する部分である。<br>
+ソースコードを確認すると<br>
+&lt;font color='red'&gt;<br>
+というタグが色を指定しているようだ。<br>
+「訓練3」を思い出すと、ボタンの<br>
+value="red"<br>
+の部分の「red」が直接送られているのだろう。<br>
+redを不正コード<br>
+&lt;script&gt;alert('message');&lt;/script&gt;<br>
+に書き換えても<br>
+&lt;font color='&lt;script&gt;alert('message');&lt;/script&gt;'&gt;<br>
+となって<br>
+&lt;font と &gt;の間にいろいろ入っておかしくなる。<br>
+どうにかして、不正コードが<br>
+&lt;font color='red'&gt;<br>
+の間に入らなければうまくいくはずである。<br>
